@@ -73,21 +73,18 @@ def namede(message):
     bot.send_message(message.chat.id,"☠️کاربر با موفقیت حذف شد✅")
 
 def mosh(message):
-    try:
-        mosh_username = message.text
-        url = f"https://ger.mrkiller90.fun:8082/api&key=16868401323MNEPOJF6ZG1C8T&method=user&username={mosh_username}" 
-        response = requests.get(url)
-        data = response.json()
-        if data.get("status") == 200:
-            username = data["data"][0]["username"]
-            password = data["data"][0]["password"]
-            start_date = data["data"][0]["startdate"]
-            exp_date = data["data"][0]["finishdate"]
-            traffic = data["data"][0]["traffic"]
-            bot.sendmessage(message.chat.id, f"💀Username: {username}\n🎩 Password: {password}\n☕️ Start Date: {startdate}\n☕ Exp Date: {expdate}\n🚀 Traffic: {traffic}")
-        else:
-            bot.sendmessage(message.chat.id, "👹User not found !")
-    except Exception:
-        bot.sendmessage(message.chat.id, "Please try again later !")
-
+    mosh_username = message.text
+    url = f"https://ger.mrkiller90.fun:8082/api&key=16868401323MNEPOJF6ZG1C8T&method=user&username={mosh_username}" 
+    response = requests.get(url)
+   data = response.json()
+   if data.get("status") == 200:
+        username = data["data"][0]["username"]
+        password = data["data"][0]["password"]
+        start_date = data["data"][0]["startdate"]
+        exp_date = data["data"][0]["finishdate"]
+        traffic = data["data"][0]["traffic"]
+        bot.send_message(message.chat.id, f"💀Username: {username}\n🎩 Password: {password}\n☕️ Start Date: {startdate}\n☕ Exp Date: {expdate}\n🚀 Traffic: {traffic}")
+   else:
+        bot.send_message(message.chat.id, "👹User not found !")
+    
 bot.infinity_polling()

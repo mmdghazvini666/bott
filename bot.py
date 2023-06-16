@@ -32,7 +32,9 @@ def info(message):
             bot.register_next_step_handler(message, banner)
         elif message.text == "🪦بکاپ🪦":
             bot.register_next_step_handler(message, backup)
-
+        elif message.text == "🔧ادیت کاربر🔧":
+            msgg = bot.send_message(message.chat.id, "🎃نام کاربر را وارد کنید :")
+            bot.register_next_step_handler(msgg,ename)
     else:
         bot.send_message(message.chat.id, "گمشو مردک فضول👹") 
 
@@ -42,24 +44,44 @@ def name(message):
     namek = message.text
     msg = bot.send_message(message.chat.id, "🎃رمز کاربر را وارد کنید : ")
     bot.register_next_step_handler(msg, ramz)
+def ename(message):
+    global enamek 
+    enamek = message.text
+    msgg = bot.send_message(message.chat.id, "🎃رمز کاربر را وارد کنید : ")
+    bot.register_next_step_handler(msgg, eramz)
 
 def ramz(message):
     global ramzk
     ramzk = message.text
     msg = bot.send_message(message.chat.id, "🎃تعداد کاربر را وارد کنید :")
     bot.register_next_step_handler(msg, tedad)
+def eramz(message):
+    global eramzk
+    eramzk = message.text
+    msgg = bot.send_message(message.chat.id, "🎃تعداد کاربر را وارد کنید :")
+    bot.register_next_step_handler(msgg, etedad)
 
 def tedad(message):
     global tedadk
     tedadk = message.text
     msg = bot.send_message(message.chat.id, "🎃تاریخ انقضاء را وارد کنید :")
     bot.register_next_step_handler(msg, enq)
+def etedad(message):
+    global etedadk
+    etedadk = message.text
+    msgg = bot.send_message(message.chat.id, "🎃تاریخ انقضاء را وارد کنید :")
+    bot.register_next_step_handler(msgg, eenq)
 
 def enq(message):
     global enqk
     enqk = message.text
     msg = bot.send_message(message.chat.id, "🎃حجم مصرفی را وارد کنید : ")
     bot.register_next_step_handler(msg, trf)
+def eenq(message):
+    global eenqk
+    eenqk = message.text
+    msgg = bot.send_message(message.chat.id, "🎃حجم مصرفی را وارد کنید : ")
+    bot.register_next_step_handler(msgg, etrf)
 
 def trf(message):
     global trfk
@@ -75,6 +97,20 @@ def trf(message):
     }
     requests.post(url,etk)
     bot.send_message(message.chat.id,"☠️your user has been created✅"+"\n💥username :" " " + namek+"\n💥password :" " " + ramzk +"\n👹multiuser :" " " + tedadk+"\n🔥traffic :" " " + trfk)
+def etrf(message):
+    global etrfk
+    etrfk = message.text
+    url = "https://ger.mrkiller90.fun:8082/api&key="+api+"&method=edituser" 
+    eetk = {
+        "username": enamek,
+        "password": eramzk,
+        "multiuser": etedadk,
+        "traffic": etrfk,
+        "type_traffic Required": "gb",
+        "expdate": eenqk
+    }
+    requests.post(url,eetk)
+    bot.send_message(message.chat.id,"☠️your user has been edited✅"+"\n💥username :" " " + enamek+"\n💥password :" " " + eramzk +"\n👹multiuser :" " " + etedadk+"\n🔥traffic :" " " + etrfk)
 
 
 def namede(message):
@@ -87,16 +123,11 @@ def namede(message):
 
 def mosh(message):
     mosh_username = message.text
-    url = f"https://ger.mrkiller90.fun:8082/api&key="+api+"&method=user&username={mosh_username}" 
+    url = f"https://ger.mrkiller90.fun:8082/api&key="+api+"&method=user&username="+mosh_username
     response = requests.get(url)
-    data = response.json()["data"]
-    username = data["username"]
-    password = data["password"]
-    startdate = data["startdate"]
-    expdate = data["finishdate"]
-    traffic = data["traffic"]
-    bot.send_message(message.chat.id, f"💀Username: {username}\n🎩 Password: {password}\n☕️ Start Date: {startdate}\n☕ Exp Date: {expdate}\n🚀 Traffic: {traffic}")
-        
+    data = response.json()['data'][0]
+    messagee = f"💻Username: {data['username']}\n🔗Password: {data['password']}\n🔋Traffic: {data['traffic']}\n🍷Multiuser: {data['multiuser']}\n🎈Start date: {data['startdate']}\n🎈Finish date: {data['finishdate']}"
+    bot.send_message(message.chat.id, messagee)
 def banner(message):
     matnk = message.text
     f = open("banner.txt", "w+")

@@ -5,8 +5,11 @@ import requests
 
 bot = telebot.TeleBot("5729803893:AAENu5_k_0w10-rjaz2T5b8L5SPCBEEZlUk")
 admin_id = 879124022
-key1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=2)
-key1.add("✍️افزودن کاربر✍️","✍️حذف کاربر✍️","🔧ادیت کاربر🔧","⚙مشخصات کاربر⚙")
+api = "1686920134QXERSKV7BDIFG2U"
+usernamee = "admin"
+passwordd = "Joker__120()&$$$@@killer@@()00532kopl"
+key1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=3)
+key1.add("✍️افزودن کاربر✍️","✍️حذف کاربر✍️","🔧ادیت کاربر🔧","⚙مشخصات کاربر⚙","💾تنظیم بنر💾","🪦بکاپ🪦")
 
 @bot.message_handler(commands=["start"])
 def wellcome(message):
@@ -24,11 +27,14 @@ def info(message):
         elif message.text == "⚙مشخصات کاربر⚙":
             mo = bot.send_message(message.chat.id, "🎃نام کاربر را وارد کنید :")
             bot.register_next_step_handler(mo, mosh) 
-        elif message.text == "banner":
-            bot.send_message(message.chat.id,"matn :")
+        elif message.text == "💾تنظیم بنر💾":
+            bot.send_message(message.chat.id,"☕️متن خود را وارد کنید :")
             bot.register_next_step_handler(message, banner)
+        elif message.text == "🪦بکاپ🪦":
+            bot.register_next_step_handler(message, backup)
+
     else:
-        bot.send_message(message.chat.id, "You are not authorized to access these features.") 
+        bot.send_message(message.chat.id, "گمشو مردک فضول👹") 
 
         
 def name(message):
@@ -58,7 +64,7 @@ def enq(message):
 def trf(message):
     global trfk
     trfk = message.text
-    url = "https://ger.mrkiller90.fun:8082/api&key=1686920134QXERSKV7BDIFG2U&method=adduser" 
+    url = "https://ger.mrkiller90.fun:8082/api&key={api}&method=adduser" 
     etk = {
         "username": namek,
         "password": ramzk,
@@ -74,14 +80,14 @@ def trf(message):
 def namede(message):
     global delnamek
     delnamek = message.text
-    url = "https://ger.mrkiller90.fun:8082/api&key=1686920134QXERSKV7BDIFG2U&method=deleteuser" 
+    url = "https://ger.mrkiller90.fun:8082/api&key={api}&method=deleteuser" 
     result = {"username": delnamek}
     requests.post(url, result)
     bot.send_message(message.chat.id,"☠️کاربر با موفقیت حذف شد✅")
 
 def mosh(message):
     mosh_username = message.text
-    url = f"https://ger.mrkiller90.fun:8082/api&key=1686920134QXERSKV7BDIFG2U&method=user&username={mosh_username}" 
+    url = f"https://ger.mrkiller90.fun:8082/api&key={api}&method=user&username={mosh_username}" 
     response = requests.get(url)
     data = response.json()
     if data.get("status") == 200:
@@ -100,7 +106,10 @@ def banner(message):
     f = open("banner.txt", "w+")
     f.write(matnk)
     f.close()
-    bot.send_message(message.chat.id, "☠️Banner has been created!✅")
-
-
+    bot.send_message(message.chat.id, "☠️بنر شما با موفقیت ساخته شد !✅")
+def backup(message):
+	os.system("mysqldump -u {usernamee} --password={passwordd} XPanel > /root/XPanel.sql")
+     backupp = open("XPanel.sql","rb")
+     bot.send_document(message.chat.id,backupp)
+	
 bot.infinity_polling()

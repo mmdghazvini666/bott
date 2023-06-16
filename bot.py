@@ -7,7 +7,7 @@ bot = telebot.TeleBot("5729803893:AAENu5_k_0w10-rjaz2T5b8L5SPCBEEZlUk")
 admin_id = 879124022
 api = "1686920134QXERSKV7BDIFG2U"
 usernamee = "admin"
-passwordd = "Joker__120()&$$$@@killer@@()00532kopl"
+passwordd = "killer44775566ki"
 key1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=2)
 key1.add("✍️افزودن کاربر✍️","✍️حذف کاربر✍️","🔧ادیت کاربر🔧","⚙مشخصات کاربر⚙","💾تنظیم بنر💾","🪦بکاپ🪦")
 
@@ -108,11 +108,11 @@ def banner(message):
     f.close()
     bot.send_message(message.chat.id, "☠️بنر شما با موفقیت ساخته شد !✅")
 def backup(message):
-    os.system("mysqldump -u 'admin' --password='killer44775566ki' XPanel > /root/XPanel.sql")
+    os.system("mysqldump -u '{usernamee}' --password='{passwordd}' XPanel > /root/XPanel.sql")
     file_path = "/root/XPanel.sql"
     with open(file_path, 'rb') as f:
         file_data = f.read()
-    bot.send_document(admin_id, file_data)
+    bot.send_document(message.chat.id, file_data, filename="XPanel.sql")
 
 	
 bot.infinity_polling()

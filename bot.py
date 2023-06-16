@@ -112,7 +112,7 @@ def backup(message):
     file_path = "/root/XPanel.sql"
     with open(file_path, 'rb') as f:
         file_data = f.read()
-    bot.send_document(message.chat.id, file_data, filename="XPanel.sql")
+    bot.send_document(message.chat.id, file_data, visible_file_name='XPanel.sql')
 
 	
 bot.infinity_polling()

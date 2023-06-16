@@ -1,6 +1,8 @@
 import telebot
 import os
 import requests
+
+
 bot = telebot.TeleBot("5729803893:AAENu5_k_0w10-rjaz2T5b8L5SPCBEEZlUk")
 admin_id = 879124022
 key1 = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True,row_width=2)
@@ -22,13 +24,13 @@ def info(message):
         elif message.text == "⚙مشخصات کاربر⚙":
             mo = bot.send_message(message.chat.id, "🎃نام کاربر را وارد کنید :")
             bot.register_next_step_handler(mo, mosh) 
-       elif message.text == "banner":
-        	bot.send_message.text(message.chat.id("matn :")
+        elif message.text == "banner":
+            bot.send_message.text(message.chat.id("matn :")
             bot.register_next_step_handler(message, banner)
-
     else:
         bot.send_message(message.chat.id, "You are not authorized to access these features.") 
 
+        
 def name(message):
     global namek 
     namek = message.text
@@ -91,11 +93,14 @@ def mosh(message):
         bot.send_message(message.chat.id, f"💀Username: {username}\n🎩 Password: {password}\n☕️ Start Date: {startdate}\n☕ Exp Date: {expdate}\n🚀 Traffic: {traffic}")
     else:
         bot.send_message(message.chat.id, "👹User not found !")
+
+        
 def banner(message):
-     matnk = message.text
-     f= open(“banner.txt”,”w+”)
-     f.write(matnk)
-     f.close()
-     bot.send_message(message.chat.id,"☠️کاربر با موفقیت حذف شد✅")
+    matnk = message.text
+    f = open("banner.txt", "w+")
+    f.write(matnk)
+    f.close()
+    bot.send_message(message.chat.id, "☠️Banner has been created!✅")
+
 
 bot.infinity_polling()

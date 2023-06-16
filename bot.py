@@ -64,7 +64,7 @@ def enq(message):
 def trf(message):
     global trfk
     trfk = message.text
-    url = "https://ger.mrkiller90.fun:8082/api&key={api}&method=adduser" 
+    url = "https://ger.mrkiller90.fun:8082/api&key="+api+"&method=adduser" 
     etk = {
         "username": namek,
         "password": ramzk,
@@ -80,14 +80,14 @@ def trf(message):
 def namede(message):
     global delnamek
     delnamek = message.text
-    url = "https://ger.mrkiller90.fun:8082/api&key={api}&method=deleteuser" 
+    url = "https://ger.mrkiller90.fun:8082/api&key="+api+"&method=deleteuser" 
     result = {"username": delnamek}
     requests.post(url, result)
     bot.send_message(message.chat.id,"☠️کاربر با موفقیت حذف شد✅")
 
 def mosh(message):
     mosh_username = message.text
-    url = f"https://ger.mrkiller90.fun:8082/api&key={api}&method=user&username={mosh_username}" 
+    url = f"https://ger.mrkiller90.fun:8082/api&key="+api+"&method=user&username={mosh_username}" 
     response = requests.get(url)
     data = response.json()
     if data.get("status") == 200:

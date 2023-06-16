@@ -89,7 +89,7 @@ def mosh(message):
     mosh_username = message.text
     url = f"https://ger.mrkiller90.fun:8082/api&key="+api+"&method=user&username={mosh_username}" 
     response = requests.get(url)
-    data = response["data"]
+    data = response.json()["data"]
     username = data["username"]
     password = data["password"]
     startdate = data["startdate"]

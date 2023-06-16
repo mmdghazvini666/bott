@@ -108,8 +108,8 @@ def banner(message):
     f.close()
     bot.send_message(message.chat.id, "☠️بنر شما با موفقیت ساخته شد !✅")
 def backup(message):
-	os.system("mysqldump -u {usernamee} --password={passwordd} XPanel > /root/XPanel.sql")
-     backupp = open("XPanel.sql","rb")
-     bot.send_document(message.chat.id,backupp)
+	os.system("mysqldump -u admin --password=Joker__120()&$$$@@killer@@()00532kopl XPanel > /root/XPanel.sql")
+    backupp = open("XPanel.sql","rb")
+    bot.send_document(message.chat.id,backupp)
 	
 bot.infinity_polling()

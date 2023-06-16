@@ -25,7 +25,7 @@ def info(message):
             mo = bot.send_message(message.chat.id, "🎃نام کاربر را وارد کنید :")
             bot.register_next_step_handler(mo, mosh) 
         elif message.text == "banner":
-            bot.send_message.text(message.chat.id("matn :")
+            bot.send_message(message.chat.id,"matn :")
             bot.register_next_step_handler(message, banner)
     else:
         bot.send_message(message.chat.id, "You are not authorized to access these features.") 
